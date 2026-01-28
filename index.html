@@ -45,6 +45,7 @@
             justify-content: center;
             text-decoration: none;
             transition: transform 0.3s ease;
+            cursor: pointer; /* Importante para que se vea clicable sin href */
         }
         
         .whatsapp-float:hover {
@@ -56,6 +57,11 @@
             max-height: 80px; 
             width: auto;
             display: block;
+        }
+        
+        /* Clase para cursor en botones seguros */
+        .secure-wa {
+            cursor: pointer;
         }
     </style>
 </head>
@@ -105,7 +111,8 @@
                 Consultoría experta en desarrollo territorial para América Latina.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4 flex-wrap">
-                <a href="https://wa.me/5492954316211?text=Hola,%20me%20encantar%C3%ADa%20recibir%20mas%20asesoramiento%20sobre%20Trama%20Territorios!%20Muchas%20Gracias." target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-full font-bold text-lg transition flex items-center justify-center gap-2">
+                <!-- Enlace WA Protegido -->
+                <a class="secure-wa bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-full font-bold text-lg transition flex items-center justify-center gap-2">
                     <i class="fa-brands fa-whatsapp"></i> WhatsApp
                 </a>
                 <a href="https://www.instagram.com/trama_territorios/" target="_blank" class="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:from-pink-600 hover:via-red-600 hover:to-yellow-600 text-white px-6 py-4 rounded-full font-bold text-lg transition flex items-center justify-center gap-2">
@@ -250,7 +257,8 @@
                         <span class="text-blue-600 text-xs font-bold uppercase tracking-wider">Capacitación</span>
                         <h3 class="text-xl font-bold my-2 text-blue-900">Gestión de Proyectos Socioproductivos</h3>
                         <p class="text-slate-600 text-sm mb-4">Formación especializada en oficios (textil, gestión) con herramientas concretas para el desarrollo emprendedor.</p>
-                        <a href="https://wa.me/5492954316211" class="text-blue-600 font-bold text-sm">Consultar próxima fecha</a>
+                        <!-- Enlace WA Protegido -->
+                        <a class="secure-wa text-blue-600 font-bold text-sm">Consultar próxima fecha</a>
                     </div>
                 </div>
 
@@ -263,7 +271,8 @@
                         <span class="text-blue-600 text-xs font-bold uppercase tracking-wider">Municipios</span>
                         <h3 class="text-xl font-bold my-2 text-blue-900">Acompañamiento a la Gestión Local</h3>
                         <p class="text-slate-600 text-sm mb-4">Asesoramiento integral a comunas para el diseño e implementación de políticas de economía social.</p>
-                        <a href="https://wa.me/5492954316211" class="text-blue-600 font-bold text-sm">Solicitar reunión</a>
+                        <!-- Enlace WA Protegido -->
+                        <a class="secure-wa text-blue-600 font-bold text-sm">Solicitar reunión</a>
                     </div>
                 </div>
 
@@ -276,7 +285,8 @@
                         <span class="text-blue-600 text-xs font-bold uppercase tracking-wider">Publicaciones</span>
                         <h3 class="text-xl font-bold my-2 text-blue-900">Prospectiva y Desarrollo Territorial</h3>
                         <p class="text-slate-600 text-sm mb-4">Nuestras últimas producciones editoriales y papers disponibles para estudiantes y profesionales del sector.</p>
-                        <a href="https://wa.me/5492954316211" class="text-blue-600 font-bold text-sm">Conseguir material</a>
+                        <!-- Enlace WA Protegido -->
+                        <a class="secure-wa text-blue-600 font-bold text-sm">Conseguir material</a>
                     </div>
                 </div>
             </div>
@@ -299,13 +309,15 @@
                         </div>
                         <div class="flex items-center gap-4">
                             <i class="fa-solid fa-envelope text-blue-400 w-5"></i>
-                            <span>formacionprofesional354@gmail.com</span>
+                            <!-- CORREO PROTEGIDO -->
+                            <span id="secure-email" class="text-slate-300">Cargando...</span>
                         </div>
                     </div>
                 </div>
                 <div>
                     <h3 class="text-xl font-bold mb-6">Contactanos directamente</h3>
-                    <a href="https://wa.me/5492954316211?text=Hola,%20me%20encantar%C3%ADa%20recibir%20mas%20asesoramiento%20sobre%20Trama%20Territorios!%20Muchas%20Gracias." target="_blank" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-xl transition w-full text-center">
+                    <!-- Enlace WA Protegido -->
+                    <a class="secure-wa inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-xl transition w-full text-center">
                         <i class="fa-brands fa-whatsapp mr-2"></i> Enviar WhatsApp
                     </a>
                 </div>
@@ -332,8 +344,8 @@
         </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/5492954316211?text=Hola,%20me%20encantar%C3%ADa%20recibir%20mas%20asesoramiento%20sobre%20Trama%20Territorios!%20Muchas%20Gracias." class="whatsapp-float" target="_blank" title="Contactanos por WhatsApp">
+    <!-- WhatsApp Floating Button Protegido -->
+    <a class="secure-wa whatsapp-float" title="Contactanos por WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
@@ -348,6 +360,49 @@
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.add('hidden');
+            });
+        });
+
+        // ==========================================
+        // SCRIPT DE SEGURIDAD (ANTI-BOTS)
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 1. Protección de Correo Electrónico
+            // Partimos los datos para que no estén juntos en el código fuente
+            const usuario = "formacionprofesional354";
+            const dominio = "gmail.com";
+            const emailElemento = document.getElementById("secure-email");
+            
+            if (emailElemento) {
+                // El navegador une las partes y las muestra al usuario
+                emailElemento.textContent = usuario + "@" + dominio;
+            }
+
+            // 2. Protección de Enlaces de WhatsApp
+            // Definimos el número en partes separadas
+            const pais = "549";
+            const area = "2954";
+            const numero = "316211";
+            const fullNumber = pais + area + numero;
+            
+            // Mensaje por defecto codificado para URL
+            const mensaje = encodeURIComponent("Hola, me encantaría recibir mas asesoramiento sobre Trama Territorios! Muchas Gracias.");
+
+            // Seleccionamos todos los elementos con la clase 'secure-wa'
+            const waButtons = document.querySelectorAll('.secure-wa');
+
+            waButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // Evitamos cualquier comportamiento por defecto
+                    e.preventDefault();
+                    
+                    // Construimos la URL en el momento del clic
+                    const url = `https://wa.me/${fullNumber}?text=${mensaje}`;
+                    
+                    // Abrimos en una nueva pestaña
+                    window.open(url, '_blank');
+                });
             });
         });
     </script>
