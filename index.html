@@ -45,7 +45,7 @@
             justify-content: center;
             text-decoration: none;
             transition: transform 0.3s ease;
-            cursor: pointer; /* Importante para que se vea clicable sin href */
+            cursor: pointer;
         }
         
         .whatsapp-float:hover {
@@ -59,7 +59,6 @@
             display: block;
         }
         
-        /* Clase para cursor en botones seguros */
         .secure-wa {
             cursor: pointer;
         }
@@ -72,8 +71,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-24 items-center">
                 <div class="flex-shrink-0 flex items-center">
-                    <!-- Ruta local a la carpeta img para el logo -->
-                    <img src="img/image_ac78f4.jpg" alt="Logo Consultora Trama Territorios" class="nav-logo">
+                    <!-- LOGO CON BORDES REDONDEADOS (MANTENIDO) -->
+                    <img src="img/image_ac78f4.jpg" alt="Logo Consultora Trama Territorios" class="nav-logo rounded-2xl">
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8 font-medium">
@@ -163,21 +162,23 @@
                     <p class="text-slate-600">Implementación de herramientas de diagnóstico y seguimiento para entender la realidad social de cada territorio.</p>
                 </div>
 
-                <!-- Servicio 4 -->
+                <!-- Servicio 4 (ACTUALIZADO) -->
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 card-hover">
                     <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 text-2xl">
                         <i class="fa-solid fa-user-graduate"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-blue-900">Tutorías Especializadas</h3>
+                    <!-- Texto actualizado desde tu GitHub -->
                     <p class="text-slate-600">Acompañamiento personalizado a estudiantes de nivel superior.</p>
                 </div>
 
-                <!-- Servicio 5 -->
+                <!-- Servicio 5 (ACTUALIZADO) -->
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 card-hover lg:col-span-1">
                     <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 text-2xl">
                         <i class="fa-solid fa-book-open"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-blue-900">Producción de Obras</h3>
+                    <!-- Texto actualizado desde tu GitHub -->
                     <p class="text-slate-600">Libros y material técnico sobre prospectiva y desarrollo territorial.</p>
                 </div>
             </div>
@@ -248,7 +249,7 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Noticia 1 -->
+                <!-- Noticia 1 (ACTUALIZADO) -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 transition hover:shadow-md">
                     <div class="h-48 bg-slate-200 overflow-hidden">
                         <img src="img/noticia-taller.jpg" alt="Gestión de Proyectos" class="w-full h-full object-cover">
@@ -256,6 +257,7 @@
                     <div class="p-6">
                         <span class="text-blue-600 text-xs font-bold uppercase tracking-wider">Capacitación</span>
                         <h3 class="text-xl font-bold my-2 text-blue-900">Gestión de Proyectos Socioproductivos</h3>
+                        <!-- Texto actualizado desde tu GitHub -->
                         <p class="text-slate-600 text-sm mb-4">Formación especializada en oficios con herramientas concretas para el desarrollo emprendedor.</p>
                         <!-- Enlace WA Protegido -->
                         <a class="secure-wa text-blue-600 font-bold text-sm">Consultar próxima fecha</a>
@@ -298,7 +300,8 @@
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
                 <div>
-                    <img src="img/image_ac78f4.jpg" alt="Logo Consultora Trama Territorios" class="h-20 mb-6 w-auto">
+                    <!-- LOGO FOOTER CON BORDES REDONDEADOS (MANTENIDO) -->
+                    <img src="img/image_ac78f4.jpg" alt="Logo Consultora Trama Territorios" class="h-20 mb-6 w-auto rounded-2xl">
                     <p class="text-slate-400 mb-8 max-w-md">
                         Transformando el territorio a través de la educación y la economía social.
                     </p>
@@ -369,38 +372,28 @@
         document.addEventListener('DOMContentLoaded', function() {
             
             // 1. Protección de Correo Electrónico
-            // Partimos los datos para que no estén juntos en el código fuente
             const usuario = "formacionprofesional354";
             const dominio = "gmail.com";
             const emailElemento = document.getElementById("secure-email");
             
             if (emailElemento) {
-                // El navegador une las partes y las muestra al usuario
                 emailElemento.textContent = usuario + "@" + dominio;
             }
 
             // 2. Protección de Enlaces de WhatsApp
-            // Definimos el número en partes separadas
             const pais = "549";
             const area = "2954";
             const numero = "316211";
             const fullNumber = pais + area + numero;
             
-            // Mensaje por defecto codificado para URL
             const mensaje = encodeURIComponent("Hola, me encantaría recibir mas asesoramiento sobre Trama Territorios! Muchas Gracias.");
 
-            // Seleccionamos todos los elementos con la clase 'secure-wa'
             const waButtons = document.querySelectorAll('.secure-wa');
 
             waButtons.forEach(button => {
                 button.addEventListener('click', function(e) {
-                    // Evitamos cualquier comportamiento por defecto
                     e.preventDefault();
-                    
-                    // Construimos la URL en el momento del clic
                     const url = `https://wa.me/${fullNumber}?text=${mensaje}`;
-                    
-                    // Abrimos en una nueva pestaña
                     window.open(url, '_blank');
                 });
             });
